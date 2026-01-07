@@ -14,6 +14,8 @@ html{
 
 div {
     margin: auto;
+    display: flex;
+    justify-content: center;
     width: 1200px;
     border: 10px solid rgb(255, 255, 255);
     background-color: var(--text_color);
@@ -55,4 +57,24 @@ pre{
   color: var(--text_color);
   font-family: lowes;
   letter-spacing: 3px;
+  line-height: 25px;
+}
+
+
+a:link{
+  color: var(--text_color);
+  font-family: lowes;
+  letter-spacing: 3px;
+}
+
+figcaption{
+  text-align: center;
+  color: var(--text_color);
+  font-family: lowes;
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+}
+
+img{
+  margin: auto
 }
