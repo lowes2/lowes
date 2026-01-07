@@ -1,0 +1,19 @@
+@font-face {
+  font-family: lowes;
+  src: url('fonts/VCR_OSD_MONO_1.001.ttf'); 
+}
+
+body {
+   background-image: url('images/background_lowes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;         
+}
+h1 {
+  color: blue;
+  font-family: lowes;
+}
+p {
+  color: red;
+  font-family: lowes;
+}
