@@ -3,15 +3,33 @@
   src: url('fonts/VCR_OSD_MONO_1.001.ttf'); 
 }
 
+html{
+    font-size: 16;
+}
+
+
+div {
+    background-image: url('images/monitor_overlay.png');
+    margin: auto;
+    width: 800px;
+    border: 10px solid rgb(255, 255, 255);
+    padding: 4px;
+    background-color: rgb(6, 95, 65);
+    border-radius: 25;
+}
 body {
-   background-image: url('images/background_lowes.png');
+    background-color: black;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;         
 }
 h1 {
-  color: blue;
+  color: rgb(51, 211, 99);
   font-family: lowes;
+  letter-spacing: 10;
+  font-size: 10rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 p {
   color: red;
