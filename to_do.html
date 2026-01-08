@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="stylesheet" href="styles.css">
+            <title>to-do list</title>
+        </head>
+
+
+        <body>
+            <div id="tv-overlay"></div>
+            <div id = "tv-background"></div>
+            <pre id="terminal-header"></pre>
+
+
+            <pre id="page-content" style="font-family: lowes">
+                > to-do list:
+                > press the button below to open a new task.
+
+
+                <a href="index.html" style="text-decoration: none; font-size: 2.5rem; color: inherit" class="transition"> > return to home</a>
+            </pre>
+
+
+
+
+           
+            
+            <div class="task">
+            <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                
+                <p class="task-title">> running task (name: )</p>
+                <p class="task-desc"> > add button to make tasks :(</p>
+                <button class ="button">> delete </button>
+            </div>
+
+
+
+
+            <script>
+                // ---------------- TYPEWRITER HEADER ----------------
+
+
+                //INSERT CUSTOM NAME FOR THE DOCUMENT
+                const pageName = "to_do_list";
+                //for the home page it's nothing.
+
+
+                document.onkeypress = function (e) {
+                    e = e || window.event;
+                    pageContent.classList.add("visible");
+                };
+
+
+
+                const textLines = [
+                `
+(press any key to skip loading animation)
+ACCESSING DIRECTORY...............
+-------------------------------------------
+> 
+> 
+> 
+> 
+> COMPLETE 
+> CURRENT DIRECTORY: directory/lowes_2/home/` + pageName  + `
+> DISPLAYING FILES... ` 
+                ];
+
+                const header = document.getElementById("terminal-header");
+                const pageContent = document.getElementById("page-content");
+
+                let lineIndex = 0;
+                let charIndex = 0;
+
+                function typeNextChar() {
+                    const currentLine = textLines[lineIndex];
+                    if (charIndex < currentLine.length) {
+                        header.textContent += currentLine[charIndex];
+                        charIndex++;
+                        setTimeout(typeNextChar, 10); // typing speed
+                    } else {
+                        header.textContent += "\n";
+                        lineIndex++;
+                        charIndex = 0;
+                        if (lineIndex < textLines.length) {
+                            setTimeout(typeNextChar, 50); // small delay between lines
+                        } else {
+                            pageContent.classList.add("visible");
+                        }
+                    }
+                }
+
+                typeNextChar();
+
+                function tvPageTransition(url) {
+                    const overlay = document.getElementById("tv-overlay");
+                    overlay.classList.add("active");
+                    const overlayBackground = document.getElementById("tv-background");
+                    overlayBackground.classList.add("active");
+
+                    setTimeout(() => {
+                        window.location.href = url;
+                        
+                    }, 700); // match CSS transition duration
+                }
+
+                document.querySelectorAll('a.transition').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        tvPageTransition(this.href);
+                    });
+                });
+
+            </script>
+
+
+           
+
+            <script>
+                
+                //Make the DIV element draggagle:
+                dragElement(document.querySelector(".task"));
+                document.addEventListener("click", function (e) {
+                if (e.target.classList.contains("button")) {
+                    const task = e.target.closest(".task");
+
+                    task.classList.add("signal-cut");
+    
+                    task.disabled = true;
+                    setTimeout(() => {
+                        task.removeElement();
+                    }, 600);
+                }
+                });
+                function dragElement(elmnt) {
+                    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                    elmnt.onmousedown = dragMouseDown;
+
+                    function dragMouseDown(e) {
+                        e = e || window.event;
+                        e.preventDefault();
+                        // get the mouse cursor position at startup:
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup = closeDragElement;
+                        // call a function whenever the cursor moves:
+                        document.onmousemove = elementDrag;
+                    }
+
+                    function elementDrag(e) {
+                        e = e || window.event;
+                        e.preventDefault();
+                        // calculate the new cursor position:
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        // set the element's new position:
+                        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    }
+
+                    function closeDragElement() {
+                        /* stop moving when mouse button is released:*/
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    }
+                }
+                
+                function addElement() {
+                // create a new div element
+                    const newDiv = document.createElement("div");
+
+                    // and give it some content
+                    const newContent = document.createTextNode("Hi there and greetings!");
+
+                    // add the text node to the newly created div
+                    newDiv.appendChild(newContent);
+
+                    // add the newly created element and its content into the DOM
+                    const currentDiv = document.getElementById("div1");
+                    document.body.insertBefore(newDiv, currentDiv);
+                }
+                
+                </script>
+        </body>
+    </html>

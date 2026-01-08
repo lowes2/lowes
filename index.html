@@ -9,28 +9,21 @@
 
 
         <body>
+            <div id = "background"></div>
+            <div id="tv-overlay"></div>
+            <div id = "tv-background"></div>
             
-            <pre>
-                ACCESSING DIRECTORY...............
-                -------------------------------------------------------------
-                >
-                >
-                >
-                >
-                > COMPLETE
-                > CURRENT DIRECTORY: directory/lowes_2/home
-                > DISPLAYING FILES...
+            <pre id="terminal-header"></pre>
 
-            </pre>>
+             
+            <pre id="page-content" style="font-family: lowes">
+               
+                <div>
+                    <h1>lowes</h1>
 
-
-            <div>
-                <h2>welcome,</h2>
-                <h1>lowes two</h1>
-
-            </div>
-                
-            <pre style="font-size: 2rem">
+                </div>
+               
+               
                 > DISPLAYING TEXT ("intro_message.txt")
 
                 > Hello!
@@ -38,36 +31,120 @@
                 > I will eventually host more interesting things here. I hope.
                 > END OF FILE
 
-            </pre>
-
-            <p style="text-align: center; font-size: 3rem; color: white">
-                V V V V V V V V V  -----  MORE  ----- V V V V V V V V V
-            </p>
-
-            <pre>
-
-
-
-
-
-
-
-
-            </pre>
-
-
-            <h2>
-                > MY PROJECTS
-
-            </h2>
-
-            <pre>
-                <a href="about_me.html" style="text-decoration: none; font-size: 2.5rem; color: inherit"> > personal info</a>
-                        read about me. there's some pretty cool stuff in there :D
+<pre style="font-size: 2rem"></pre>              
                 
-                <a href="photo_gallery.html" style="text-decoration: none; font-size: 2.5rem; color: inherit"> > UNAVAILABLE</a>
-                        look at some of my favorite photos :)
+
+
+<p style="text-align: center; font-size: 3rem; color: white">
+V V V V V V V V V  -----  MORE  ----- V V V V V V V V V</p>
+
+
+
+<h2 style="text-align: left;">
+> files ────────┐
+
+</h2>
+
+<pre>
+    <a class="file"href="about_me.html"> > personal info</a>
+        read about me. there's some pretty cool stuff in there :D
                 
+    <a class="file"href="photo_gallery.html"> > UNAVAILABLE</a>
+        look at some of my favorite photos :)
+
+    <a class="file"href="adventures.html"> > adventures</a>
+        read about some of my favorite adventures 
+        
+    <a class="file"href="to_do.html"> > to-do list</a>
+        create tasks. until you refresh the page lol.
+
+    <a class="file"href="random_stuff.html"> > misc</a>
+        other sillies
+
+
+
+</pre>                
             </pre>
+
+
+           
+                
+            
+
+            <script>
+
+
+                //INSERT CUSTOM NAME FOR THE DOCUMENT
+                const pageName = "";
+                //for the home page it's nothing.
+
+
+                document.onkeypress = function (e) {
+                    e = e || window.event;
+                    pageContent.classList.add("visible");
+                };
+
+
+
+                const textLines = [
+                `
+(press any key to skip loading animation)
+ACCESSING DIRECTORY...............
+-------------------------------------------
+> 
+> 
+> 
+> 
+> COMPLETE 
+> CURRENT DIRECTORY: directory/lowes_2/home/` + pageName  + `
+> DISPLAYING FILES... ` 
+                ];
+
+                const header = document.getElementById("terminal-header");
+                const pageContent = document.getElementById("page-content");
+
+                let lineIndex = 0;
+                let charIndex = 0;
+
+                function typeNextChar() {
+                    const currentLine = textLines[lineIndex];
+                    if (charIndex < currentLine.length) {
+                        header.textContent += currentLine[charIndex];
+                        charIndex++;
+                        setTimeout(typeNextChar, 10); // typing speed
+                    } else {
+                        header.textContent += "\n";
+                        lineIndex++;
+                        charIndex = 0;
+                        if (lineIndex < textLines.length) {
+                            setTimeout(typeNextChar, 50); // small delay between lines
+                        } else {
+                            pageContent.classList.add("visible");
+                        }
+                    }
+                }
+
+                typeNextChar();
+
+                function tvPageTransition(url) {
+                    const overlay = document.getElementById("tv-overlay");
+                    overlay.classList.add("active");
+                    const overlayBackground = document.getElementById("tv-background");
+                    overlayBackground.classList.add("active");
+
+                    setTimeout(() => {
+                        window.location.href = url;
+                        
+                    }, 700); // match CSS transition duration
+                }
+
+                document.querySelectorAll('a.transition').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        tvPageTransition(this.href);
+                    });
+                });
+
+            </script>
         </body>
     </html>

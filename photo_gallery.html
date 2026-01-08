@@ -2,64 +2,104 @@
     <html>
         <head>
             <link rel="stylesheet" href="styles.css">
-            <title>>directory/home</title>
+            <title>photo gallery</title>
         </head>
 
 
         <body>
-            
-            <pre>
-                ACCESSING DIRECTORY...............
-                -------------------------------------------------------------
-                >
-                >
-                >
-                >
-                > COMPLETE
-                > CURRENT DIRECTORY: directory/lowes_2/home
-                > DISPLAYING FILES...
+            <div id="tv-overlay"></div>
+            <div id = "tv-background"></div>
+            <pre id="terminal-header"></pre>
 
-            </pre>>
+            <pre id="page-content" style="font-family: lowes">
+                <a href="index.html" style="text-decoration: none; font-size: 2.5rem; color: inherit" class="transition"> > return to home</a>
+                 <div>
+<h2>photo gallery</h2>                
 
-
-            <div>
-                <h2>welcome,</h2>
-                <h1>lowes two</h1>
-
-            </div>
+                </div>
                 
-            <pre style="font-size: 2rem">
-                > DISPLAYING TEXT ("intro_message.txt")
-
-                > Hello!
-                > This is my website!
-                > I will eventually host more interesting things here. I hope.
-                > END OF FILE
-
-            </pre>
-
-            <p style="text-align: center; font-size: 3rem; color: white">
-                V V V V V V V V V  -----  MORE  ----- V V V V V V V V V
-            </p>
-
-            <pre>
+                
+                > i will put photos here later. too far.
 
 
-
-
-
-
-
-
+                
             </pre>
 
 
-            <h2>
-                > MY PROJECTS
-            </h2>
+            <script>
+                    
 
-            <pre>
-                <a href="pages/photo_gallery.html" style="text-decoration: none; font-size: 2.5rem"> > photo gallery</a>
-            </pre>
+                //INSERT CUSTOM NAME FOR THE DOCUMENT
+                const pageName = "photo_gallery";
+                //for the home page it's nothing.
+
+
+                document.onkeypress = function (e) {
+                    e = e || window.event;
+                    pageContent.classList.add("visible");
+                };
+
+
+
+                const textLines = [
+                `
+(press any key to skip loading animation)
+ACCESSING DIRECTORY...............
+-------------------------------------------
+> 
+> 
+> 
+> 
+> COMPLETE 
+> CURRENT DIRECTORY: directory/lowes_2/home/` + pageName  + `
+> DISPLAYING FILES... ` 
+                ];
+
+                const header = document.getElementById("terminal-header");
+                const pageContent = document.getElementById("page-content");
+
+                let lineIndex = 0;
+                let charIndex = 0;
+
+                function typeNextChar() {
+                    const currentLine = textLines[lineIndex];
+                    if (charIndex < currentLine.length) {
+                        header.textContent += currentLine[charIndex];
+                        charIndex++;
+                        setTimeout(typeNextChar, 10); // typing speed
+                    } else {
+                        header.textContent += "\n";
+                        lineIndex++;
+                        charIndex = 0;
+                        if (lineIndex < textLines.length) {
+                            setTimeout(typeNextChar, 50); // small delay between lines
+                        } else {
+                            pageContent.classList.add("visible");
+                        }
+                    }
+                }
+
+                typeNextChar();
+
+                function tvPageTransition(url) {
+                    const overlay = document.getElementById("tv-overlay");
+                    overlay.classList.add("active");
+                    const overlayBackground = document.getElementById("tv-background");
+                    overlayBackground.classList.add("active");
+
+                    setTimeout(() => {
+                        window.location.href = url;
+                        
+                    }, 700); // match CSS transition duration
+                }
+
+                document.querySelectorAll('a.transition').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        tvPageTransition(this.href);
+                    });
+                });
+
+            </script>
         </body>
     </html>
