@@ -1,14 +1,57 @@
 //INSERT CUSTOM NAME FOR THE DOCUMENT
 let pageName = document.title;
 //for the home page it's nothing.
-
+let sequence = "";
 
 document.onkeypress = function (e) {
     e = e || window.event;
     pageContent.classList.add("visible");
 };
 
+document.onkeydown = function(a){
+    
+    switch(a.key){
+        case "ArrowUp":
+            sequence += "up";
+            break;
+        case "ArrowDown":
+            sequence += "down";
+            break;
+        case "ArrowLeft":
+            sequence += "left";
+            break;
+        case "ArrowRight":
+            sequence += "right";
+            break;
+        case "a":
+        case "A":
+            sequence += "a";
+            break;
+        case "b":
+        case "B":
+            sequence += "b";
+            break;
+    }
 
+
+    if (sequence === "upupdowndownleftrightleftrightba"){
+        let song = new Audio('sfx/audio_of_anguish_and_torment.mp3');
+        song.play();
+        flashbang();
+        sequence = "";
+    }
+
+};
+
+const flash = document.getElementById("flashbang");
+const background = document.getElementByTagName("background");
+
+function flashbang() {
+
+  flash.classList.remove("active");
+  void flash.offsetWidth; // force reflow
+  flash.classList.add("active");
+}
 
 let textLines = [
 `

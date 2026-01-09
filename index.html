@@ -9,6 +9,7 @@
 
 
         <body>
+            <div id="flashbang"></div>
             <div id = "background"></div>
             <div id="tv-overlay"></div>
             <div id = "tv-background"></div>
@@ -69,7 +70,29 @@ V V V V V V V V V  -----  MORE  ----- V V V V V V V V V</p>
 
            
                 
-            
+            <script type="module">
+            // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+                import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+                // TODO: Add SDKs for Firebase products that you want to use
+                // https://firebase.google.com/docs/web/setup#available-libraries
+
+                // Your web app's Firebase configuration
+                // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDX1mzfyqxknExh9KAzKVsTRUys-U9Eaa8",
+                    authDomain: "lowes-4eb3d.firebaseapp.com",
+                    projectId: "lowes-4eb3d",
+                    storageBucket: "lowes-4eb3d.firebasestorage.app",
+                    messagingSenderId: "822249317678",
+                    appId: "1:822249317678:web:ef95b8855e02c1e3e486bf",
+                    measurementId: "G-KG8DKFB3PH"
+                };
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const analytics = getAnalytics(app);
+            </script>      
 
             <script type="text/javascript" src="loading_screen.js"></script>
         </body>

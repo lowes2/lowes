@@ -165,7 +165,7 @@ img{
   transition: transform 0.2s ease-in;
   border-color:#00e600;
 
-  z-index: 9999;
+  z-index: 51;
   opacity: 0;
 }
 
@@ -178,7 +178,7 @@ img{
   pointer-events: none;
   transform: scaleY(1);
   transform-origin: center;
-  z-index: 9998;
+  z-index: 50;
   border:none;
   box-shadow: none;
   opacity: 0;
@@ -202,6 +202,37 @@ img{
   opacity: 1;
 }
 
+#flashbang {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0;
+  background-color:white;
+  
+}
+
+#flashbang.active {
+  animation: flashbang 5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
+
+@keyframes flashbang {
+ /* INSTANT FLASH */
+  0%   { opacity: 0; filter: blur(0px); }
+  1%   { opacity: 1; filter: blur(2px); }
+
+  /* HOLD FULL WHITE */
+  40%  { opacity: 1; filter: blur(2px); }
+
+  /* AFTERIMAGE BURN */
+  45%  { opacity: 0.5; filter: blur(4px); }
+ 
+
+  /* RECOVERY */
+  100% { opacity: 0; filter: blur(0px); }
+}
 
 #tv-overlay.active {
   opacity: 1;
