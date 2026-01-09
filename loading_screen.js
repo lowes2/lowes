@@ -41,9 +41,20 @@ ACCESSING DIRECTORY...............
 let lineIndex = 0;
 let charIndex = 0;
 
+typeNextChar();  
+document.addEventListener("DOMContentLoaded", () => {
+    let click = new Audio('sfx/website_ambience.mp3');
+    click.play();
+});
+
+
+
 function typeNextChar() {
-    const currentLine = textLines[lineIndex];
+   
+    const currentLine = textLines[lineIndex];  
+
     if (charIndex < currentLine.length) {
+        
         header.textContent += currentLine[charIndex];
         charIndex++;
         setTimeout(typeNextChar, 10); // typing speed
@@ -59,7 +70,7 @@ function typeNextChar() {
     }
 }
 
-typeNextChar();  
+
 
 
 
@@ -68,7 +79,9 @@ typeNextChar();
 document.onkeydown = function(a){
     
     pageContent.classList.add("visible");
-    
+    let click = new Audio('sfx/clack.mp3');
+    click.volume = 0.3;
+    click.play();
     switch(a.key){
         case "ArrowUp":
             sequence += "up";
