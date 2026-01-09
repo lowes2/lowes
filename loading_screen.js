@@ -3,55 +3,8 @@ let pageName = document.title;
 //for the home page it's nothing.
 let sequence = "";
 
-document.onkeypress = function (e) {
-    e = e || window.event;
-    pageContent.classList.add("visible");
-};
-
-document.onkeydown = function(a){
-    
-    switch(a.key){
-        case "ArrowUp":
-            sequence += "up";
-            break;
-        case "ArrowDown":
-            sequence += "down";
-            break;
-        case "ArrowLeft":
-            sequence += "left";
-            break;
-        case "ArrowRight":
-            sequence += "right";
-            break;
-        case "a":
-        case "A":
-            sequence += "a";
-            break;
-        case "b":
-        case "B":
-            sequence += "b";
-            break;
-    }
-
-
-    if (sequence === "upupdowndownleftrightleftrightba"){
-        let song = new Audio('sfx/audio_of_anguish_and_torment.mp3');
-        song.play();
-        flashbang();
-        sequence = "";
-    }
-
-};
-
-const flash = document.getElementById("flashbang");
-const background = document.getElementByTagName("background");
-
-function flashbang() {
-
-  flash.classList.remove("active");
-  void flash.offsetWidth; // force reflow
-  flash.classList.add("active");
-}
+let header = document.getElementById("terminal-header");
+let pageContent = document.getElementById("page-content");
 
 let textLines = [
 `
@@ -84,8 +37,6 @@ ACCESSING DIRECTORY...............
     ];
 }
 
-let header = document.getElementById("terminal-header");
-let pageContent = document.getElementById("page-content");
 
 let lineIndex = 0;
 let charIndex = 0;
@@ -108,7 +59,71 @@ function typeNextChar() {
     }
 }
 
-typeNextChar();                
+typeNextChar();  
+
+
+
+
+
+document.onkeydown = function(a){
+    
+    pageContent.classList.add("visible");
+    
+    switch(a.key){
+        case "ArrowUp":
+            sequence += "up";
+            break;
+        case "ArrowDown":
+            sequence += "down";
+            break;
+        case "ArrowLeft":
+            sequence += "left";
+            break;
+        case "ArrowRight":
+            sequence += "right";
+            break;
+        case "a":
+        case "A":
+            sequence += "a";
+            break;
+        case "b":
+        case "B":
+            sequence += "b";
+            break;
+        
+        default:
+            sequence = "";
+    }
+
+
+    if (sequence === "upupdowndownleftrightleftrightba"){
+        let song = new Audio('sfx/audio_of_anguish_and_torment.mp3');
+        song.play();
+        flashbang();
+        sequence = "";
+    }
+
+};
+
+const flash = document.getElementById("flashbang");
+const background = document.getElementByTagName("background");
+
+function flashbang() {
+  void flash.offsetWidth; // force reflow
+  flash.classList.add("active");
+  setTimeout(() => {
+    flash.classList.remove("active");
+  }, 5000);
+
+    
+}
+
+
+
+
+
+
+              
 
 function tvPageTransition(url) {
     const overlay = document.getElementById("tv-overlay");
